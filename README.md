@@ -1,5 +1,7 @@
 # QuestExplorer – React Native App for Meta Quest 3
 
+**📖 Live Interactive Guide:** [Open full starter notebook →](https://mmxxtdmk.github.io/react-native-meta-quest-starter/)
+
 [![Expo](https://img.shields.io/badge/Expo-000000?logo=expo&logoColor=white)](https://expo.dev)
 [![React Native](https://img.shields.io/badge/React%20Native-20232A?logo=react&logoColor=61DAFB)](https://reactnative.dev)
 [![Meta Horizon](https://img.shields.io/badge/Meta%20Horizon-1A73E8?logo=meta&logoColor=white)](https://developers.meta.com/horizon/)
