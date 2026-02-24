@@ -81,6 +81,15 @@ desktop.ini
 *.swo
 
 # =====================================================
+# GitHub Social Preview Banner (large binary – ignored)
+# (Preview still works via Settings > Social preview upload)
+social-preview.png
+banner.png
+og-image.png
+preview.png
+*.banner.png
+
+# =====================================================
 # WHAT YOU SHOULD COMMIT (explicitly allowed):
 #   • Your main .ipynb notebook file
 #   • README.md
