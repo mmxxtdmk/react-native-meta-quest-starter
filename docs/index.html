@@ -13456,6 +13456,41 @@ OVR Metrics Tool (FPS + ms/frame)</p>
 </div>
 </div>
 </div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="React-Native-New-Arch-for-XR-Performance">React Native New Arch for XR Performance<a class="anchor-link" href="#React-Native-New-Arch-for-XR-Performance">¶</a></h2><p>START_OF_CELL</p>
+<p>For Quest XR apps, New Arch cuts latency via direct native/JS interop—crucial for 90Hz VR to avoid motion sickness.</p>
+<p>Key benefits in Horizon OS:</p>
+<ul>
+<li><strong>Fabric</strong>: Unified UI manager for smoother 3D rendering (e.g., Reanimated gestures in immersive views).</li>
+<li><strong>JSI</strong>: Synchronous JS-native calls, faster than async Bridge for real-time XR input.</li>
+<li><strong>TurboModules</strong>: Lazy-loaded natives, reducing APK size for Quest sideloads.</li>
+</ul>
+<p>Enable in your Quest app (app.json or gradle.properties):</p>
+<div class="highlight"><pre><span></span><span class="p">{</span>
+<span class="w">  </span><span class="nt">"expo"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nt">"android"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="nt">"newArchEnabled"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+<p>Then in App.tsx, leverage with Reanimated for XR animations:</p>
+<div class="highlight"><pre><span></span><span class="k">import</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">useSharedValue</span><span class="p">,</span><span class="w"> </span><span class="nx">withTiming</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s1">'react-native-reanimated'</span><span class="p">;</span>
+
+<span class="kd">function</span><span class="w"> </span><span class="nx">XRComponent</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="kd">const</span><span class="w"> </span><span class="nx">rotation</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">useSharedValue</span><span class="p">(</span><span class="mf">0</span><span class="p">);</span>
+<span class="w">  </span><span class="c1">// Low-latency animation for Quest hand tracking</span>
+<span class="w">  </span><span class="nx">rotation</span><span class="p">.</span><span class="nx">value</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">withTiming</span><span class="p">(</span><span class="mf">180</span><span class="p">,</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">duration</span><span class="o">:</span><span class="w"> </span><span class="kt">500</span><span class="w"> </span><span class="p">});</span>
+<span class="w">  </span><span class="k">return</span><span class="w"> </span><span class="p">&lt;</span><span class="nt">Animated</span><span class="p">.</span><span class="na">View</span><span class="w"> </span><span class="na">style</span><span class="o">=</span><span class="p">{{</span><span class="w"> </span><span class="nx">transform</span><span class="o">:</span><span class="w"> </span><span class="p">[{</span><span class="w"> </span><span class="nx">rotateY</span><span class="o">:</span><span class="w"> </span><span class="kt">rotation</span><span class="w"> </span><span class="p">}]</span><span class="w"> </span><span class="p">}}</span><span class="w"> </span><span class="p">/&gt;;</span>
+<span class="p">}</span>
+</pre></div>
+<p>Pro tip: Benchmark FPS with expo-fps—aim &gt;72Hz.</p>
+<p>END_OF_CELL</p>
+</div>
+</div>
+</div>
 </div>
 </div>
 </main>
